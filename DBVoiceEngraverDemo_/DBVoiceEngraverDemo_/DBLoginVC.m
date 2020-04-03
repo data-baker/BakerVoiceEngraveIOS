@@ -10,6 +10,8 @@
 #import <DBVoiceEngraver/DBVoiceEngraverManager.h>
 #import "UIView+Toast.h"
 #import "XCHudHelper.h"
+#import <AdSupport/AdSupport.h>
+
 
 @interface DBLoginVC ()
 @property (weak, nonatomic) IBOutlet UITextField *clientIdTextField;
@@ -20,7 +22,7 @@
 @implementation DBLoginVC
 
 - (void)viewDidLoad {
-    [super viewDidLoad];   
+    [super viewDidLoad];
 }
 - (IBAction)loginAction:(id)sender {
     
@@ -35,7 +37,10 @@
     NSString *clientId = [self.clientIdTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString *clientSecret = [self.clientSecretTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     [[XCHudHelper sharedInstance] showHudOnView:self.view caption:@"" image:nil acitivity:YES autoHideTime:0];
-    [[DBVoiceEngraverManager sharedInstance] setupWithClientId:clientId clientSecret:clientSecret queryId:@"9162"SuccessHandler:^(NSDictionary * _Nonnull dict) {
+    NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+
+    
+    [[DBVoiceEngraverManager sharedInstance] setupWithClientId:clientId clientSecret:clientSecret queryId:idfa SuccessHandler:^(NSDictionary * _Nonnull dict) {
         [[XCHudHelper sharedInstance] hideHud];
         [[NSUserDefaults standardUserDefaults]setObject:clientId forKey:clientIdKey];
         [[NSUserDefaults standardUserDefaults]setObject:clientSecret forKey:clientSecretKey];

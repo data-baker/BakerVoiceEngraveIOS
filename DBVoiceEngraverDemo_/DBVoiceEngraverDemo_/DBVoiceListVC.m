@@ -11,6 +11,7 @@
 #import <DBVoiceEngraver/DBVoiceEngraverManager.h>
 #import "UIView+Toast.h"
 #import "XCHudHelper.h"
+#import <AdSupport/AdSupport.h>
 
 @interface DBVoiceListVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UITabBarControllerDelegate>
 @property(nonatomic,strong)NSMutableArray * dataSource;
@@ -38,8 +39,10 @@
 // MARK: network Methods
 
 - (void)loadListData {
+    NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+
     [[XCHudHelper sharedInstance] showHudOnView:self.view caption:@"" image:nil acitivity:YES autoHideTime:0];
-    [self.voiceEngraverManager batchQueryModelStatusByQueryId:@"9162" SuccessHandler:^(NSArray<DBVoiceModel *> * _Nonnull array) {
+    [self.voiceEngraverManager batchQueryModelStatusByQueryId:idfa SuccessHandler:^(NSArray<DBVoiceModel *> * _Nonnull array) {
         [[XCHudHelper sharedInstance] hideHud];
         [self.dataSource removeAllObjects];
         [self.dataSource addObjectsFromArray:array];
@@ -103,11 +106,12 @@
     //   DBVoiceExperienceVC *voiceExperienceVC = [[DBVoiceExperienceVC alloc]init];
     //    [self.navigationController pushViewController:voiceExperienceVC animated:YES];
     DBVoiceModel *model = self.dataSource[indexPath.row];
-    if (![[NSString stringWithFormat:@"%@",model.modelStatus] isEqualToString:@"6"]) {
-        [self.view makeToast:@"请训练成功后再试" duration:2 position:CSToastPositionCenter];
-        return ;
-
-    }
+    
+//    if (![[NSString stringWithFormat:@"%@",model.modelStatus] isEqualToString:@"6"]) {
+//        [self.view makeToast:@"请训练成功后再试" duration:2 position:CSToastPositionCenter];
+//        return ;
+//
+//    }
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"DBVoiceExperience" bundle:[NSBundle mainBundle]];
     DBVoiceExperienceVC *experienceVC  =  [story instantiateViewControllerWithIdentifier:@"DBVoiceExperienceVC"];
     experienceVC.voiceModel = model;
