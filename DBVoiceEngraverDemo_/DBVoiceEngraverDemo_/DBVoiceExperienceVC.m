@@ -47,6 +47,7 @@ static NSString *textPlaceHolder = @"请输入要合成的文本";
     self.wordNumLabel.text = @"字数：0/200";
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(appResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(appBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
+    [self.playButton addTarget:self action:@selector(handlePlayAction:) forControlEvents:UIControlEventTouchUpInside];
 
 }
 
@@ -58,20 +59,90 @@ static NSString *textPlaceHolder = @"请输入要合成的文本";
 - (void)appBecomeActive:(NSNotification *)noti {
     NSLog(@"app 变活跃");
 }
+- (IBAction)handlePlayTTSAction:(id)sender {
+    [self handlePlayAction:nil];
+}
 
-- (IBAction)playAction:(id )sender {
-    
-//    UIButton *button = (UIButton *)sender;
-//    button.selected = !button.isSelected;
-    
-    
+
+
+- (void)handlePlayAction:(UIButton *) sender {
+
     if ([self.playTextView.text isEqualToString:textPlaceHolder]) {
         [self.view makeToast:textPlaceHolder duration:2 position:CSToastPositionCenter];
         return ;
     }
-    
+    NSLog(@"1");
     NSURL *url = [self playWithText:self.playTextView.text];
-    [self playWithUrl:url];
+//      NSURL *url2 = [NSURL URLWithString:@"https://baklongcdn.data-baker.com/background_music/3cf590fb2df447b38375839823a3024c.mp3?Expires=1874563743&OSSAccessKeyId=LTAI3GkKBSJFDJsp&Signature=%2F46T7cRY3XsNvnUWXtUoqkaCQ6w%3D"];
+//    [self playWithUrl:url];
+    [self downloadWithUrl:url];
+}
+
+
+- (void)downloadWithUrl:(NSURL *)url {
+    
+    NSString *filename = @"xxx.mp3";
+    //获取 URL
+//    NSString *urlStr = [NSString stringWithFormat:@"http://mr7.doubanio.com/832d52e9c3df5c13afd7243a770c094f/0/fm/song/p294_128k.mp3",filename];
+//    NSURL *url = [NSURL URLWithString:urlStr];
+    //创建请求
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    //创建会话（全局会话）
+    NSURLSession *session = [NSURLSession sharedSession];
+    //创建任务
+    NSURLSessionDownloadTask *downloadTak = [session downloadTaskWithRequest:request completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        //获取缓存目录
+        NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)lastObject];
+        //歌存到缓存目录，并命名
+        NSString *savePath = [cachePath stringByAppendingPathComponent:filename];
+        //得到路径，打开终端 open 去掉 xxx.mp3 的目录，就可以直观的看到 MP3文件的下载
+        NSLog(@"%@",savePath);
+        
+        NSURL *saveurl = [NSURL fileURLWithPath:savePath];
+        /*
+         1.location 是下载后的临时保存路径，需要将它移动到需要保存的位置
+         2.move faster than copy
+           (1).因为 copy 需要在磁盘上生成一个新的文件，这个速度是很慢的；
+           (2).copy 后，还要把临时文件删除，move 这一步就行了 = (copy + remove)
+         3.move 有两个功能 一是移动  二是重命名
+         */
+        NSError *saveError;
+        [[NSFileManager defaultManager]moveItemAtURL:location toURL:saveurl error:&saveError];
+        
+        //如果错误存在，输出
+        if (saveError) {
+            NSLog(@"%@",saveError.localizedDescription);
+        }
+        //播放
+        [self playMusic];
+    }];
+    //执行任务
+    [downloadTak resume];
+}
+-(void)playMusic {
+    //获取缓存目录
+    NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)lastObject];
+    //获取缓存目录下的歌曲
+    NSString *filePath = [cachePath stringByAppendingPathComponent:@"xxx.mp3"];
+    /*
+     fileURLWithPath:  文件链接
+     URLWithString:    http链接
+     */
+    NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
+    //判断文件存不存在
+    if(
+       [[NSFileManager defaultManager]fileExistsAtPath:filePath]){
+        NSLog(@"exist");
+    
+    
+        NSError *error;
+       [self playWithUrl:fileUrl];
+        if (error) {
+        NSLog(@"%@",error.localizedDescription);
+        }
+    //加入缓存
+    //播放
+    }
 }
 
 - (NSURL *)playWithText:(NSString *)playText {
@@ -79,13 +150,13 @@ static NSString *textPlaceHolder = @"请输入要合成的文本";
     NSString * path = [NSString stringWithFormat:@"%@?access_token=%@&domain=1&language=zh&voice_name=%@&text=%@",ttsIPURL,accesstoken,self.voiceModel.modelId,playText];
     NSString *encodeString = [path stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     NSURL * url = [NSURL URLWithString:encodeString];
-    
     return url;
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
+- (void)downloadURL {
+}
 
+- (void)dealloc {
     if (_timeObserve) {
         [_player removeTimeObserver:_timeObserve];
         _timeObserve = nil;
@@ -101,16 +172,20 @@ static NSString *textPlaceHolder = @"请输入要合成的文本";
     self.playItem  = [[AVPlayerItem alloc]initWithURL:url];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayEnd) name:AVPlayerItemDidPlayToEndTimeNotification object:self.playItem];
     self.player = [AVPlayer playerWithPlayerItem:self.playItem];
-     [[XCHudHelper sharedInstance] showHudOnView:self.view caption:@"音频加载中" image:nil acitivity:YES autoHideTime:0];
+//     [[XCHudHelper sharedInstance] showHudOnView:self.view caption:@"音频加载中" image:nil acitivity:YES autoHideTime:0];
+    NSLog(@"2");
+
     [self.playItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
+    
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     
     if ([keyPath isEqualToString:@"status"]) {
         [self moniPlayBackAction];
-        [[XCHudHelper sharedInstance] hideHud];
+//        [[XCHudHelper sharedInstance] hideHud];
         [self.player play];
+        NSLog(@"3");
     }
     
 }

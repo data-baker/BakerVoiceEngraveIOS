@@ -11,7 +11,7 @@
 #import <DBVoiceEngraver/DBVoiceEngraverManager.h>
 #import "UIView+Toast.h"
 #import "DBLoginVC.h"
-
+#import <AdSupport/AdSupport.h>
 @interface ViewController ()<DBVoiceDetectionDelegate>
 
 @end
@@ -20,6 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+      NSLog(@"idfa :%@",idfa);
+    
     NSString *clientId = [[NSUserDefaults standardUserDefaults] objectForKey:clientIdKey];
     NSString *clientSecret = [[NSUserDefaults standardUserDefaults] objectForKey:clientSecretKey];
     
@@ -30,8 +33,8 @@
         [self presentViewController:loginVC animated:YES completion:nil];
         return ;
     }
-    
-       [[DBVoiceEngraverManager sharedInstance] setupWithClientId:clientId clientSecret:clientSecret queryId:@"9162"SuccessHandler:^(NSDictionary * _Nonnull dict) {
+     
+       [[DBVoiceEngraverManager sharedInstance] setupWithClientId:clientId clientSecret:clientSecret queryId:idfa SuccessHandler:^(NSDictionary * _Nonnull dict) {
            [[NSUserDefaults standardUserDefaults]setObject:clientId forKey:clientIdKey];
            [[NSUserDefaults standardUserDefaults]setObject:clientSecret forKey:clientSecretKey];
            [[NSUserDefaults standardUserDefaults] synchronize];

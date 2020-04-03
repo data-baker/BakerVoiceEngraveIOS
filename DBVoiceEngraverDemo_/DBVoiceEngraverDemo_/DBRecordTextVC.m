@@ -164,8 +164,7 @@
 - (void)onErrorCode:(NSInteger)errorCode errorMsg:(NSString *)errorMsg {
     NSLog(@"error Code %@ ,errorMessage: %@",@(errorCode),errorMsg);
 }
-
-- (void)callBackAudioVolume:(NSInteger)voiceVolume {
+- (void)dbDetecting:(NSInteger)volumeDB {
     static NSInteger index = 0;
     index++;
     if (index == 2) {
@@ -173,24 +172,24 @@
     }else {
         return;
     }
-        if (voiceVolume < 30) {
+        if (volumeDB < 30) {
             self.voiceImageView.image = [UIImage imageNamed:@"1"];
-        }else if (voiceVolume < 40) {
+        }else if (volumeDB < 40) {
             self.voiceImageView.image = [UIImage imageNamed:@"2"];
 
-        }else if (voiceVolume < 50) {
+        }else if (volumeDB < 50) {
             self.voiceImageView.image = [UIImage imageNamed:@"3"];
 
-        }else if (voiceVolume < 55) {
+        }else if (volumeDB < 55) {
             self.voiceImageView.image = [UIImage imageNamed:@"4"];
 
-        }else if (voiceVolume < 60) {
+        }else if (volumeDB < 60) {
             self.voiceImageView.image = [UIImage imageNamed:@"5"];
 
-        }else if (voiceVolume < 70) {
+        }else if (volumeDB < 70) {
             self.voiceImageView.image = [UIImage imageNamed:@"6"];
 
-        }else if (voiceVolume < 80) {
+        }else if (volumeDB < 80) {
             self.voiceImageView.image = [UIImage imageNamed:@"7"];
 
         }else{
@@ -233,6 +232,9 @@
             [self.navigationController popToRootViewControllerAnimated:YES];
         } failureHandler:^(NSError * _Nonnull error) {
             [self.view makeToast:@"退出session失败" duration:2 position:CSToastPositionCenter];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            });
         }];
 
     }];
