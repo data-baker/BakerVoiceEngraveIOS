@@ -73,8 +73,6 @@ static NSString *textPlaceHolder = @"请输入要合成的文本";
     }
     NSLog(@"1");
     NSURL *url = [self playWithText:self.playTextView.text];
-//      NSURL *url2 = [NSURL URLWithString:@"https://baklongcdn.data-baker.com/background_music/3cf590fb2df447b38375839823a3024c.mp3?Expires=1874563743&OSSAccessKeyId=LTAI3GkKBSJFDJsp&Signature=%2F46T7cRY3XsNvnUWXtUoqkaCQ6w%3D"];
-//    [self playWithUrl:url];
     [self downloadWithUrl:url];
 }
 
