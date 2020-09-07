@@ -80,9 +80,9 @@ SDK关键类：
 |- (void)getRecordTextArrayTextHandler:(DBTextBlock)textHandler failure:(DBFailureHandler)failureHandler| 获取复刻的文本 textHandler：以数组的形式回调文本数据； failureHandler：回调失败结果|
 |- (void)setupQueryId:(nullable NSString *)queryId| 设置查询Id，需要在执行获取sessionId前设置，此参数不是必填参数，但是强烈建议使用 queryId： 查询Id|
 |- (void)startRecordWithText:(NSString *)text failureHander:(DBFailureHandler)failureHandler|传入识别文本并开启录音,默认添加了一个120s时长的录音限制；failureHandler：如果发生错误，回调此方法|
-|- (void)stopRecord;|结束录音，结束本次录音|
+|- (void)pauseRecord;|结束录音，结束本次录音|
 |- (void)unNormalStopRecordSeesionSuccessHandler:(DBSuccessHandler)successBlock failureHandler:(DBFailureHandler)failureHandler|非正常录音结束，如果用户没录音完返回需要调用此方法结束录音，不然会默认占用一个录音权限，如果长时间未调用，也会自动释放；successBlock：结束录音成功的回调；failureHandler：如果发生错误，回调此方法|
-|- (void)uploadRecordVoiceRecogizeHandler:(DBVoiceRecogizeHandler)successHandler failureHander:(DBFailureHandler)failureHandler|上传录音文件进行识别successHandler：识别成功failureHandler：如果发生错误，回调此方法|
+|- (void)uploadRecordVoiceRecogizeHandler:(DBVoiceRecogizeHandler)successHandler |上传录音文件进行识别successHandler：识别成功 1、如果发生错误，回调代理方法- (void)dbVoiceRecognizeError:(NSError *)error|
 |- (void)queryModelStatusByModelId:(NSString *)modelId SuccessHandler:(DBSuccessModelHandler)successHandler failureHander:(DBFailureHandler)failureHandler|根据默认传入的modelId查询模型状态successHandler：查询成功，以数组的形式返回model failureHandler：如果发生错误，回调此方|
 |- (void)startModelTrainRecordVoiceWithPhoneNumber:(NSString * _Nullable)phoneNumber                              notifyUrl:(NSString *_Nullable)notifyUrl                          successHandler:(DBSuccessHandler)successHandler failureHander(DBFailureHandler)failureHandler|开启模型训练；phoneNumber：手机号码 notifyUrl：用于接收复刻结果的回调url successHandler:开启训练成功，开启成功后会回调modelId failureHandler：如果发生错误，回调此方法|
 
@@ -92,12 +92,14 @@ SDK关键类：
 另一种方式则是声音模型ID + TTS合成SDK，具体集成方式可参考我们TTS合成SDK的接入文档。这种方式无文本长度限制，实时合成流式返回，TTS合成SDK中也有播放器功能，集成使用很方便。
 
 ## 4.错误码说明
-| 错误码 | column |
-|--------|--------|
-|   1000     |   麦克风没有权限     |
-|1001|初始化SDK失败|
-|1002|获取token失败|
-|1003|获取session失败|
-|99999|获取网络数据异常|
+| 错误码 | 枚举状态 |含义 |
+|--------|--------|--------|
+|   0   | DBErrorStateNOError  |   成功     |
+|   1000   | DBErrorStateMircrophoneNotPermission  |   麦克风没有权限     |
+|1001|  DBErrorStateInitlizeSDK|初始化SDK失败|
+|1002|DBErrorStateFailureToAccessToken|获取token失败|
+|1003|DBErrorStateFailureToGetSession|获取session失败|
+|1004|DBErrorStateFailureInvalidParams|无效的参数|
+|99999|DBErrorStateNetworkDataError|获取网络数据异常|
 
 
