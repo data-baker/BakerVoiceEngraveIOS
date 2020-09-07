@@ -15,6 +15,7 @@ typedef NS_ENUM(NSUInteger,DBErrorState){
     DBErrorStateInitlizeSDK              = 1001, // 初始化SDK失败
     DBErrorStateFailureToAccessToken     = 1002, // 获取token失败
     DBErrorStateFailureToGetSession      = 1003, // 获取session失败
+    DBErrorStateFailureInvalidParams      = 1004, // 无效的参数
     DBErrorStateNetworkDataError          = 99999,// 获取网络数据错误
 };
 

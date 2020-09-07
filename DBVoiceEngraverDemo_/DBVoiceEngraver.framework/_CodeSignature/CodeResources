@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/DBVoiceDetectionDelegate.h</key>
 		<data>
-		djKAHvx2hGgssHvFUcJkg/AiIeA=
+		RFe2fxbWX/G01TJjz3lwQ6WxZUg=
 		</data>
 		<key>Headers/DBVoiceDetectionUtil.h</key>
 		<data>
@@ -14,19 +14,19 @@
 		</data>
 		<key>Headers/DBVoiceEngraverEnumerte.h</key>
 		<data>
-		VUZ1379/vhXI0CMz6ImeufDCC2o=
+		+/Azl4pq3O+KyoCFSibs5/S6YBI=
 		</data>
 		<key>Headers/DBVoiceEngraverManager.h</key>
 		<data>
-		QQg1mqs5DNVqQtctXos3J06h0zw=
+		U9lqVqr3LqDTPErLDO4ha/nX0F0=
 		</data>
 		<key>Headers/DBVoiceModel.h</key>
 		<data>
-		suDWKClYtf3gmTmKakMkhyvUmxI=
+		jF7fH6jFm3bnZAjf+l5rRdWMFpg=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		vRRkysip7DyFoYDe31fp2IyM1e4=
+		6ZC1FDiNYpf4cVie56b2LmWlD8E=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -35,11 +35,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			djKAHvx2hGgssHvFUcJkg/AiIeA=
+			RFe2fxbWX/G01TJjz3lwQ6WxZUg=
 			</data>
 			<key>hash2</key>
 			<data>
-			L/MImYUUL2OAJqWoHH1B1k2QkYsAQKgtDwgRXZ6ivbo=
+			qJ+bc3WgAm3k/Q9R/1H2UHHs/8xWNAA0u2SzMa14ldA=
 			</data>
 		</dict>
 		<key>Headers/DBVoiceDetectionUtil.h</key>
@@ -57,33 +57,33 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			VUZ1379/vhXI0CMz6ImeufDCC2o=
+			+/Azl4pq3O+KyoCFSibs5/S6YBI=
 			</data>
 			<key>hash2</key>
 			<data>
-			CFaVRKFPG9qRJYlJw3vxJBs7b08Z2I1Z9VQnM3rTGqo=
+			XJ5RT5ZYfe6ndfcUk/ckiFk7ICLwCOPYgY1K6op/L+4=
 			</data>
 		</dict>
 		<key>Headers/DBVoiceEngraverManager.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			QQg1mqs5DNVqQtctXos3J06h0zw=
+			U9lqVqr3LqDTPErLDO4ha/nX0F0=
 			</data>
 			<key>hash2</key>
 			<data>
-			QjWHCkNuBocH/JI4JYFnFJLxS2zrhnkhOjcV5o0WxKk=
+			PbJ0uaxMZw+h+M10GtX254OPedZyVwt1qRSQchfHHII=
 			</data>
 		</dict>
 		<key>Headers/DBVoiceModel.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			suDWKClYtf3gmTmKakMkhyvUmxI=
+			jF7fH6jFm3bnZAjf+l5rRdWMFpg=
 			</data>
 			<key>hash2</key>
 			<data>
-			RE7/MUszm7Dyg/2XOa3bidR6V3cTNrQVtLxd/Twzz+g=
+			edMG5uWz+GnuFlzr2owqXiRby7DWVg4hu7YLUUonZvI=
 			</data>
 		</dict>
 	</dict>

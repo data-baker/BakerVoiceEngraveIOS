@@ -11,6 +11,8 @@
 #import "DBVoiceDetectionDelegate.h"
 
 
+
+
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^DBSuccessHandler)(NSDictionary *dict);
@@ -18,26 +20,28 @@ typedef void (^DBSuccessHandler)(NSDictionary *dict);
 typedef void (^DBVoiceRecogizeHandler)(DBVoiceRecognizeModel *model);
 /// 获取识别文本的block
 typedef void (^DBTextBlock)(NSArray <NSString *> *textArray);
-/// 获取声音模型的block
+
+/// 获取声音模型的block,多个
 typedef void (^DBSuccessModelHandler)(NSArray<DBVoiceModel *> *array);
 
+// 回调声音的模型block，单个
 typedef void (^DBSuccessOneModelHandler)(DBVoiceModel  *voiceModel);
 
 /// 失败的回调
 typedef void (^DBFailureHandler)(NSError *error);
 
 
-
-
-
 @interface DBVoiceEngraverManager : NSObject
 
+/// 录音和错误相关的回调
 @property(nonatomic,weak)id<DBVoiceDetectionDelegate>  delegate;
 
 @property(nonatomic,copy,readonly)NSString * accessToken;
 
 /// 默认为NO，开启Yes可打印log日志
 @property(nonatomic,assign)BOOL  enableLog;
+
+
 
 
 // 实例化对象
@@ -63,18 +67,18 @@ typedef void (^DBFailureHandler)(NSError *error);
 - (void)setupQueryId:(nullable NSString *)queryId;
 
 // 开始录音，第一次录音会开启一个会话session,如果开启失败会通过failureHandler回调错误
-- (void)startRecordWithText:(NSString *)text failureHander:(DBFailureHandler)failureHandler;
+- (void)startRecordWithTextIndex:(NSInteger )textIndex failureHander:(DBFailureHandler)failureHandler;
 
 // 结束录音
-- (void)stopRecord;
+- (void)pauseRecord;
 
 // 非正常录音结束
 - (void)unNormalStopRecordSeesionSuccessHandler:(DBSuccessHandler)successBlock failureHandler:(DBFailureHandler)failureHandler;
 
-/// 上传录音的声音到服务器
+/// 上传录音的声音到服务器,失败的情况通过代理进行回调
 /// @param successHandler 上传成功的回调
-/// @param failureHandler 上传失败的回调
-- (void)uploadRecordVoiceRecogizeHandler:(DBVoiceRecogizeHandler)successHandler failureHander:(DBFailureHandler)failureHandler;
+
+- (void)uploadRecordVoiceRecogizeHandler:(DBVoiceRecogizeHandler)successHandler;
 
 /// 查询模型状态
 - (void)queryModelStatusByModelId:(NSString *)modelId SuccessHandler:(DBSuccessOneModelHandler)successHandler failureHander:(DBFailureHandler)failureHandler;
@@ -89,6 +93,20 @@ typedef void (^DBFailureHandler)(NSError *error);
                                    successHandler:(DBSuccessOneModelHandler)successHandler
                                     failureHander:(DBFailureHandler)failureHandler;
 
+
+
+/// 试听音频
+/// @param index 当前音频的第几段
+- (void)listenAudioWithTextIndex:(NSInteger)index;
+
+/// 停止试听
+- (void)stopCurrentListen;
+
+
+/// 当前的条目能否进入下一条,Yes：可以,NO:不可以
+/// @param currentIndex 当前条目的Index
+
+- (BOOL)canNextStepByCurrentIndex:(NSInteger)currentIndex;
 
 @end
 
