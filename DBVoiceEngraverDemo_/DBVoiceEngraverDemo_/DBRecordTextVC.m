@@ -17,21 +17,26 @@
 @property (weak, nonatomic) IBOutlet UILabel *phaseTitleLabel;
 @property (weak, nonatomic) IBOutlet UITextView *recordTextView;
 @property (weak, nonatomic) IBOutlet UIButton *startRecordButton;
-@property (weak, nonatomic) IBOutlet UIButton *finishRecordButton;
-@property (weak, nonatomic) IBOutlet UIButton *resumeRecordButton;
+/// 下一条
+@property (weak, nonatomic) IBOutlet UIButton *nextRecordButton;
+/// 上一条
+@property (weak, nonatomic) IBOutlet UIButton *lastRecordButton;
 @property(nonatomic,strong)DBVoiceEngraverManager * voiceEngraverManager;
 @property (weak, nonatomic) IBOutlet UIView *titileBackGroundView;
 @property (weak, nonatomic) IBOutlet UILabel *phaseLabel;
 @property (weak, nonatomic) IBOutlet UILabel *allPhaseLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *voiceImageView;
+@property (weak, nonatomic) IBOutlet UIButton *listenButton;
+
 @property(nonatomic,assign) CFAbsoluteTime startTime;
 
+/// 表示当前录制的是第几条
 @property (nonatomic, assign) int index;
-
 
 @end
 
 @implementation DBRecordTextVC
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,11 +47,6 @@
     [self addBoardOfTitleBackgroundView:self.titileBackGroundView cornerRadius:50];
     [self p_setTextViewAttributeText:self.textArray.firstObject];
     self.allPhaseLabel.text = [NSString stringWithFormat:@"共%@段",@(self.textArray.count)];
-    #ifdef DBTest
-    self.finishRecordButton.hidden = NO;
-    #else
-
-    #endif
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -67,98 +67,120 @@
     UIButton *button = (UIButton *)sender;
     button.selected = !button.isSelected;
     if (button.isSelected) {
-        self.voiceImageView.hidden =  NO;
         self.startTime = CFAbsoluteTimeGetCurrent();
-        [self.voiceEngraverManager startRecordWithText:self.recordTextView.text failureHander:^(NSError * _Nonnull error) {
+        [self.voiceEngraverManager startRecordWithTextIndex:self.index failureHander:^(NSError * _Nonnull error) {
             NSLog(@"error %@",error);
             // 发生错误停止录音
-            [self.voiceEngraverManager stopRecord];
+            [self.view makeToast:error.description duration:2 position:CSToastPositionCenter];
+            [self.voiceEngraverManager pauseRecord];
+            [self endRecordState];
         }];
         [self beginRecordState];
         
     }else {
-        [self.voiceEngraverManager stopRecord];
         [self endRecordState];
-        self.voiceImageView.hidden = YES;
         [self uploadRecoginizeVoice];
     }
 }
 
-- (IBAction)finishRecordAction:(id)sender {
+- (IBAction)nextRecordAction:(id)sender {
+
+    if (![self.voiceEngraverManager canNextStepByCurrentIndex:self.index]) {
+        [self.view makeToast:@"请录制完当前条目再点击下一步" duration:2.f position:CSToastPositionCenter];
+        return;
+    }
+    self.index++;
+    BOOL ret = [self updateTextPhaseWithIndex:self.index];
+    if (!ret) {
+        self.index--;
+    }
     
-    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    DBRecordCompleteVC *completedVC  =   [story instantiateViewControllerWithIdentifier:@"DBRecordCompleteVC"];
-    [self.navigationController pushViewController:completedVC animated:YES];
-    
-    return ;
 }
+
+- (IBAction)lastRecordAction:(id)sender {
+    self.index--;
+    BOOL ret = [self updateTextPhaseWithIndex:self.index];
+    if (!ret) {
+        self.index++;
+    }
+}
+/// 试听
+- (IBAction)lisenAction:(id)sender {
+    [self.voiceEngraverManager listenAudioWithTextIndex:self.index];
+}
+
+
 - (void)uploadRecoginizeVoice {
     [self showHUD];
-    
     [self.voiceEngraverManager uploadRecordVoiceRecogizeHandler:^(DBVoiceRecognizeModel * _Nonnull model) {
         [self hiddenHUD];
-        if ([model.status.stringValue isEqualToString:@"1"]) {
+        if ([model.passStatus.stringValue isEqualToString:@"1"]) {
             [self.view makeToast:[NSString stringWithFormat:@"上传识别成功：准确率：%@",model.percent] duration:2 position:CSToastPositionCenter];
-            self.index++;
-            [self nextTextPhaseWithIndex:self.index];
-            
         }else {
             [self.view makeToast:[NSString stringWithFormat:@"上传识别失败：准确率：%@",model.percent] duration:2 position:CSToastPositionCenter];
         }
         
-    } failureHander:^(NSError * _Nonnull error) {
-        [self hiddenHUD];
-        [self.view makeToast:@"识别音频失败" duration:2 position:CSToastPositionCenter];
     }];
-    
-    [self beginRecordState];
+
 }
 
-- (void)nextTextPhaseWithIndex:(NSInteger)phaseIndex {
+- (BOOL)updateTextPhaseWithIndex:(NSInteger)phaseIndex {
+    if (phaseIndex<0) {
+        NSLog(@"第一段");
+        return NO;
+    }
     
     if (phaseIndex >= self.textArray.count) {
         NSLog(@"最后一段");
         UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        DBRecordCompleteVC *completedVC  =   [story instantiateViewControllerWithIdentifier:@"DBRecordCompleteVC"];
+        DBRecordCompleteVC *completedVC  = [story instantiateViewControllerWithIdentifier:@"DBRecordCompleteVC"];
         [self.navigationController pushViewController:completedVC animated:YES];
-    
-        return ;
-        
+        return NO;
     }
+    
+    if (phaseIndex == 0) {
+        NSLog(@"第一段");
+        self.lastRecordButton.hidden = YES;
+    }else {
+        self.lastRecordButton.hidden = NO;
+    }
+    
+    
     [self p_setTextViewAttributeText:self.textArray[phaseIndex]];
     self.phaseLabel.text =  [NSString stringWithFormat:@"第%@段",@(self.index+1)];
     self.allPhaseLabel.text = [NSString stringWithFormat:@"共%@段",@(self.textArray.count)];
-
+    
+    [self.voiceEngraverManager stopCurrentListen];
+    return YES;
 }
 
 
 - (void)beginRecordState {
-    self.resumeRecordButton.hidden = YES;
-    self.finishRecordButton.hidden = YES;
+    self.voiceImageView.hidden =  NO;
+
+    self.lastRecordButton.hidden = YES;
+    self.nextRecordButton.hidden = YES;
     self.startRecordButton.hidden = NO;
+    self.listenButton.hidden = YES;
 }
 
 - (void)endRecordState {
-    self.resumeRecordButton.hidden = YES;
-    self.finishRecordButton.hidden = YES;
+    
+    if (self.index >0) {
+        self.lastRecordButton.hidden = NO;
+    }else {
+        self.lastRecordButton.hidden = YES;
+    }
+    self.voiceImageView.hidden = YES;
+    self.nextRecordButton.hidden = NO;
     self.startRecordButton.hidden = NO;
+    self.listenButton.hidden = NO;
     
 }
-- (IBAction)resumeRecordAction:(id)sender {
-    UIButton *button = (UIButton *)sender;
-    button.selected = !button.isSelected;
-    if (button.isSelected) {
-        [self.voiceEngraverManager startRecordWithText:self.recordTextView.attributedText.string failureHander:^(NSError * _Nonnull error) {
-            NSLog(@"error %@",error);
-        }];
-        self.resumeRecordButton.hidden = NO;
-        self.finishRecordButton.hidden = YES;
-        self.startRecordButton.hidden = YES;
-    }else {
-        [self.voiceEngraverManager stopRecord];
-        [self endRecordState];
-    }
-}
+
+
+
+
 // MARK: delegate Methods -
 
 - (void)onErrorCode:(NSInteger)errorCode errorMsg:(NSString *)errorMsg {
@@ -167,40 +189,39 @@
 - (void)dbDetecting:(NSInteger)volumeDB {
     static NSInteger index = 0;
     index++;
-    if (index == 2) {
+    if (index == 1) {
         index = 0;
     }else {
         return;
     }
-        if (volumeDB < 30) {
-            self.voiceImageView.image = [UIImage imageNamed:@"1"];
-        }else if (volumeDB < 40) {
-            self.voiceImageView.image = [UIImage imageNamed:@"2"];
+    if (volumeDB < 30) {
+        self.voiceImageView.image = [UIImage imageNamed:@"1"];
+    }else if (volumeDB < 40) {
+        self.voiceImageView.image = [UIImage imageNamed:@"2"];
+    }else if (volumeDB < 50) {
+        self.voiceImageView.image = [UIImage imageNamed:@"3"];
+    }else if (volumeDB < 55) {
+        self.voiceImageView.image = [UIImage imageNamed:@"4"];
+    }else if (volumeDB < 60) {
+        self.voiceImageView.image = [UIImage imageNamed:@"5"];
+    }else if (volumeDB < 70) {
+        self.voiceImageView.image = [UIImage imageNamed:@"6"];
+    }else if (volumeDB < 80) {
+        self.voiceImageView.image = [UIImage imageNamed:@"7"];
+    }else{
+        self.voiceImageView.image = [UIImage imageNamed:@"8"];
+    }
+    self.startTime = CFAbsoluteTimeGetCurrent();
+}
 
-        }else if (volumeDB < 50) {
-            self.voiceImageView.image = [UIImage imageNamed:@"3"];
+- (void)dbVoiceRecognizeError:(NSError *)error {
+    [self endRecordState];
+    [self.view makeToast:error.description duration:2.f position:CSToastPositionCenter];
+}
 
-        }else if (volumeDB < 55) {
-            self.voiceImageView.image = [UIImage imageNamed:@"4"];
-
-        }else if (volumeDB < 60) {
-            self.voiceImageView.image = [UIImage imageNamed:@"5"];
-
-        }else if (volumeDB < 70) {
-            self.voiceImageView.image = [UIImage imageNamed:@"6"];
-
-        }else if (volumeDB < 80) {
-            self.voiceImageView.image = [UIImage imageNamed:@"7"];
-
-        }else{
-            self.voiceImageView.image = [UIImage imageNamed:@"8"];
-
-        }
-        self.startTime = CFAbsoluteTimeGetCurrent();
-        
-//    }
-    
-
+- (void)playToEnd {
+    self.listenButton.selected = NO;
+    NSLog(@"播放完成了");
 }
 
 // MARK: private Method
@@ -227,7 +248,6 @@
     [alertVC addAction:cancelAction];
 
     UIAlertAction *doneAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        [self.voiceEngraverManager stopRecord];
         [self.voiceEngraverManager unNormalStopRecordSeesionSuccessHandler:^(NSDictionary * _Nonnull dict) {
             [self.navigationController popToRootViewControllerAnimated:YES];
         } failureHandler:^(NSError * _Nonnull error) {
@@ -236,7 +256,7 @@
                 [self.navigationController popToRootViewControllerAnimated:YES];
             });
         }];
-
+        
     }];
     [alertVC addAction:doneAction];
    

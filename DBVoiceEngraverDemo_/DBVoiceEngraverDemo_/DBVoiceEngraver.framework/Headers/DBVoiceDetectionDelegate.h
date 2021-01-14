@@ -25,6 +25,17 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)dbDetectionResult:(BOOL)result value:(NSInteger)volumeDB;
 
 
+/// 回调音频识别错误的结果
+/// @param error 错误信息
+- (void)dbVoiceRecognizeError:(NSError *)error;
+
+
+/// 试听音频播放完成的回调
+- (void)playToEnd;
+
 @end
+
+
+
 
 NS_ASSUME_NONNULL_END

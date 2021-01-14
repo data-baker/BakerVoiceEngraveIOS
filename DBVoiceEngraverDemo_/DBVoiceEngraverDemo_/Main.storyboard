@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="E05-Iu-FIe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="E05-Iu-FIe">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -69,7 +69,7 @@
         <scene sceneID="fDO-FX-kOs">
             <objects>
                 <navigationController title="导航" automaticallyAdjustsScrollViewInsets="NO" id="jbo-hQ-C39" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="声音复刻" image="person" catalog="system" id="JCl-yp-56U"/>
+                    <tabBarItem key="tabBarItem" title="声音复刻" image="person.circle.fill" catalog="system" id="JCl-yp-56U"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dUA-OD-hsm">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -175,33 +175,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="0gJ-XM-3cZ">
-                                <rect key="frame" x="158" y="761" width="98" height="41"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="0gJ-XM-3cZ">
+                                <rect key="frame" x="207" y="802" width="0.0" height="0.0"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28W-yT-eUp">
-                                        <rect key="frame" x="0.0" y="0.0" width="98" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="重新朗读"/>
-                                        <state key="selected" title="停止朗读"/>
+                                        <state key="normal" title="上一条"/>
+                                        <state key="selected" title="上一条"/>
                                         <connections>
-                                            <action selector="resumeRecordAction:" destination="l6h-TP-ivm" eventType="touchUpInside" id="zMg-6a-Na9"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbK-G0-iUg">
-                                        <rect key="frame" x="0.0" y="0.0" width="98" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="开始朗读"/>
-                                        <state key="selected" title="上传识别"/>
-                                        <connections>
-                                            <action selector="startRecordAction:" destination="l6h-TP-ivm" eventType="touchUpInside" id="xbD-wC-yH4"/>
+                                            <action selector="lastRecordAction:" destination="l6h-TP-ivm" eventType="touchUpInside" id="Of8-oC-MGg"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFW-0I-WP1">
-                                        <rect key="frame" x="0.0" y="0.0" width="98" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="上传识别"/>
+                                        <state key="normal" title="下一条"/>
                                         <connections>
-                                            <action selector="finishRecordAction:" destination="l6h-TP-ivm" eventType="touchUpInside" id="2wa-Ob-M6C"/>
+                                            <action selector="nextRecordAction:" destination="l6h-TP-ivm" eventType="touchUpInside" id="UMI-oW-dH8"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -263,29 +254,54 @@
                                     <constraint firstAttribute="width" constant="80" id="ki7-oi-Vft"/>
                                 </constraints>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="45" translatesAutoresizingMaskIntoConstraints="NO" id="d0J-ti-ElL">
+                                <rect key="frame" x="158" y="752" width="98" height="41"/>
+                                <subviews>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pua-3e-F70">
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="试听"/>
+                                        <connections>
+                                            <action selector="lisenAction:" destination="l6h-TP-ivm" eventType="touchUpInside" id="IcC-Jm-BXH"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbK-G0-iUg">
+                                        <rect key="frame" x="0.0" y="0.0" width="98" height="41"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="24"/>
+                                        <state key="normal" title="开始朗读"/>
+                                        <state key="selected" title="上传识别"/>
+                                        <connections>
+                                            <action selector="startRecordAction:" destination="l6h-TP-ivm" eventType="touchUpInside" id="xbD-wC-yH4"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Jt3-Pk-AY0" firstAttribute="top" secondItem="SF1-zY-qom" secondAttribute="top" constant="40" id="CN5-Ul-rdu"/>
                             <constraint firstItem="SF1-zY-qom" firstAttribute="bottom" secondItem="0gJ-XM-3cZ" secondAttribute="bottom" constant="60" id="FGx-BV-WEG"/>
                             <constraint firstItem="Jt3-Pk-AY0" firstAttribute="centerX" secondItem="z2r-KD-qiB" secondAttribute="centerX" id="N8N-DJ-fxK"/>
+                            <constraint firstItem="0gJ-XM-3cZ" firstAttribute="top" secondItem="d0J-ti-ElL" secondAttribute="bottom" constant="9" id="O5p-ic-Yxl"/>
                             <constraint firstItem="SF1-zY-qom" firstAttribute="trailing" secondItem="oEd-JM-H43" secondAttribute="trailing" constant="20" id="SzH-rB-Egx"/>
                             <constraint firstItem="TaT-8x-hlM" firstAttribute="top" secondItem="oEd-JM-H43" secondAttribute="bottom" constant="20" id="cch-Yk-WJX"/>
                             <constraint firstItem="0gJ-XM-3cZ" firstAttribute="centerX" secondItem="z2r-KD-qiB" secondAttribute="centerX" id="isV-O8-dpq"/>
                             <constraint firstItem="oEd-JM-H43" firstAttribute="leading" secondItem="SF1-zY-qom" secondAttribute="leading" constant="20" id="kxA-Ym-Ntk"/>
                             <constraint firstItem="oEd-JM-H43" firstAttribute="top" secondItem="Jt3-Pk-AY0" secondAttribute="bottom" constant="25" id="lWe-DL-sXD"/>
                             <constraint firstItem="TaT-8x-hlM" firstAttribute="centerX" secondItem="z2r-KD-qiB" secondAttribute="centerX" id="o70-4Y-Mjz"/>
+                            <constraint firstItem="d0J-ti-ElL" firstAttribute="centerX" secondItem="z2r-KD-qiB" secondAttribute="centerX" id="oqt-1K-6oh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SF1-zY-qom"/>
                     </view>
                     <navigationItem key="navigationItem" title="第二步：声音录制" id="LKl-09-9KP"/>
                     <connections>
                         <outlet property="allPhaseLabel" destination="nYs-f8-wE2" id="TmL-6g-sI9"/>
-                        <outlet property="finishRecordButton" destination="nFW-0I-WP1" id="TgE-IL-iqt"/>
+                        <outlet property="lastRecordButton" destination="28W-yT-eUp" id="qly-Wg-FGM"/>
+                        <outlet property="listenButton" destination="pua-3e-F70" id="CZ5-m2-aCV"/>
+                        <outlet property="nextRecordButton" destination="nFW-0I-WP1" id="TgE-IL-iqt"/>
                         <outlet property="phaseLabel" destination="xVk-Nm-SSF" id="nZw-Jw-fhY"/>
                         <outlet property="phaseTitleLabel" destination="xVk-Nm-SSF" id="WlL-7m-rbZ"/>
                         <outlet property="recordTextView" destination="oEd-JM-H43" id="8pX-i5-kQ1"/>
-                        <outlet property="resumeRecordButton" destination="28W-yT-eUp" id="qly-Wg-FGM"/>
                         <outlet property="startRecordButton" destination="bbK-G0-iUg" id="Ekc-DV-IdY"/>
                         <outlet property="titileBackGroundView" destination="Jt3-Pk-AY0" id="h2a-Jy-CSs"/>
                         <outlet property="voiceImageView" destination="TaT-8x-hlM" id="2HI-Ma-N5V"/>
@@ -487,6 +503,6 @@
     </scenes>
     <resources>
         <image name="1.png" width="333" height="333"/>
-        <image name="person" catalog="system" width="64" height="58"/>
+        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
     </resources>
 </document>

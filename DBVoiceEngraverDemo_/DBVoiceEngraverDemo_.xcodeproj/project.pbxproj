@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35843ECC25B0277A003A4857 /* DBRecordTextVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 35843ECB25B0277A003A4857 /* DBRecordTextVC.m */; };
+		35AF599E25B02B8A005119A5 /* DBVoiceEngraver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35AF599D25B02B8A005119A5 /* DBVoiceEngraver.framework */; };
+		35AF59A325B02BE6005119A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35AF59A125B02BE6005119A5 /* Main.storyboard */; };
+		35AF59A425B02BE6005119A5 /* DBVoiceExperience.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35AF59A225B02BE6005119A5 /* DBVoiceExperience.storyboard */; };
 		35D3C4512421E07300121C4F /* DBLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D3C4502421E07300121C4F /* DBLoginVC.m */; };
 		35F64880241A216200D70512 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F6487F241A216200D70512 /* Assets.xcassets */; };
 		35F64883241A216200D70512 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F64881241A216200D70512 /* LaunchScreen.storyboard */; };
 		35F64886241A216200D70512 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F64885241A216200D70512 /* main.m */; };
-		35F648A9241A219100D70512 /* DBRecordTextVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F6488C241A219000D70512 /* DBRecordTextVC.m */; };
 		35F648AA241A219100D70512 /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F6488F241A219000D70512 /* 8.png */; };
 		35F648AB241A219100D70512 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F64890241A219000D70512 /* 4.png */; };
 		35F648AC241A219100D70512 /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F64891241A219000D70512 /* 5.png */; };
@@ -32,12 +35,14 @@
 		35F648C5241A21A700D70512 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F648BE241A21A700D70512 /* MBProgressHUD.m */; };
 		35F648C6241A21A700D70512 /* XCHudHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F648BF241A21A700D70512 /* XCHudHelper.m */; };
 		35F648C7241A21A700D70512 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F648C2241A21A700D70512 /* UIView+Toast.m */; };
-		35F648C8241A21A700D70512 /* DBVoiceExperience.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F648C3241A21A700D70512 /* DBVoiceExperience.storyboard */; };
-		35F648C9241A21A700D70512 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F648C4241A21A700D70512 /* Main.storyboard */; };
-		35F648CB241A21E300D70512 /* DBVoiceEngraver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F648CA241A21E300D70512 /* DBVoiceEngraver.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		35843ECA25B02779003A4857 /* DBRecordTextVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBRecordTextVC.h; sourceTree = "<group>"; };
+		35843ECB25B0277A003A4857 /* DBRecordTextVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBRecordTextVC.m; sourceTree = "<group>"; };
+		35AF599D25B02B8A005119A5 /* DBVoiceEngraver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DBVoiceEngraver.framework; sourceTree = "<group>"; };
+		35AF59A125B02BE6005119A5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		35AF59A225B02BE6005119A5 /* DBVoiceExperience.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DBVoiceExperience.storyboard; sourceTree = "<group>"; };
 		35D3C44F2421E07300121C4F /* DBLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLoginVC.h; sourceTree = "<group>"; };
 		35D3C4502421E07300121C4F /* DBLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLoginVC.m; sourceTree = "<group>"; };
 		35F64870241A215F00D70512 /* DBVoiceEngraverDemo_.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DBVoiceEngraverDemo_.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,7 +50,6 @@
 		35F64882241A216200D70512 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		35F64884241A216200D70512 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35F64885241A216200D70512 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		35F6488C241A219000D70512 /* DBRecordTextVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBRecordTextVC.m; sourceTree = "<group>"; };
 		35F6488D241A219000D70512 /* DBRecordCompleteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBRecordCompleteVC.h; sourceTree = "<group>"; };
 		35F6488F241A219000D70512 /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8.png; sourceTree = "<group>"; };
 		35F64890241A219000D70512 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
@@ -57,7 +61,6 @@
 		35F64896241A219000D70512 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		35F64897241A219000D70512 /* DBVoiceListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBVoiceListVC.m; sourceTree = "<group>"; };
 		35F64898241A219000D70512 /* CALayer+XibConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+XibConfiguration.h"; sourceTree = "<group>"; };
-		35F64899241A219000D70512 /* DBRecordTextVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBRecordTextVC.h; sourceTree = "<group>"; };
 		35F6489A241A219000D70512 /* DBVoiceListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBVoiceListVC.h; sourceTree = "<group>"; };
 		35F6489B241A219000D70512 /* SceneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		35F6489C241A219000D70512 /* UIViewController+DBBackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DBBackButtonHandler.h"; sourceTree = "<group>"; };
@@ -79,9 +82,6 @@
 		35F648C0241A21A700D70512 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		35F648C1241A21A700D70512 /* XCHudHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCHudHelper.h; sourceTree = "<group>"; };
 		35F648C2241A21A700D70512 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
-		35F648C3241A21A700D70512 /* DBVoiceExperience.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DBVoiceExperience.storyboard; sourceTree = "<group>"; };
-		35F648C4241A21A700D70512 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		35F648CA241A21E300D70512 /* DBVoiceEngraver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DBVoiceEngraver.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35F648CB241A21E300D70512 /* DBVoiceEngraver.framework in Frameworks */,
+				35AF599E25B02B8A005119A5 /* DBVoiceEngraver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +115,7 @@
 		35F64872241A215F00D70512 /* DBVoiceEngraverDemo_ */ = {
 			isa = PBXGroup;
 			children = (
-				35F648CA241A21E300D70512 /* DBVoiceEngraver.framework */,
+				35AF599D25B02B8A005119A5 /* DBVoiceEngraver.framework */,
 				35F648A1241A219100D70512 /* AppDelegate.h */,
 				35F648A7241A219100D70512 /* AppDelegate.m */,
 				35F64898241A219000D70512 /* CALayer+XibConfiguration.h */,
@@ -124,13 +124,12 @@
 				35F648A3241A219100D70512 /* DBNoiseDetectionVC.m */,
 				35F6488D241A219000D70512 /* DBRecordCompleteVC.h */,
 				35F648A2241A219100D70512 /* DBRecordCompleteVC.m */,
-				35F64899241A219000D70512 /* DBRecordTextVC.h */,
-				35F6488C241A219000D70512 /* DBRecordTextVC.m */,
 				35F648A8241A219100D70512 /* DBVoiceExperienceVC.h */,
 				35F648A6241A219100D70512 /* DBVoiceExperienceVC.m */,
+				35843ECA25B02779003A4857 /* DBRecordTextVC.h */,
+				35843ECB25B0277A003A4857 /* DBRecordTextVC.m */,
 				35F6489A241A219000D70512 /* DBVoiceListVC.h */,
 				35F64897241A219000D70512 /* DBVoiceListVC.m */,
-				35F6488E241A219000D70512 /* DBVoiceResource */,
 				35F6489B241A219000D70512 /* SceneDelegate.h */,
 				35F648A4241A219100D70512 /* SceneDelegate.m */,
 				35F6489C241A219000D70512 /* UIViewController+DBBackButtonHandler.h */,
@@ -139,8 +138,9 @@
 				35F6489F241A219000D70512 /* ViewController.m */,
 				35D3C44F2421E07300121C4F /* DBLoginVC.h */,
 				35D3C4502421E07300121C4F /* DBLoginVC.m */,
-				35F648C3241A21A700D70512 /* DBVoiceExperience.storyboard */,
-				35F648C4241A21A700D70512 /* Main.storyboard */,
+				35AF59A225B02BE6005119A5 /* DBVoiceExperience.storyboard */,
+				35AF59A125B02BE6005119A5 /* Main.storyboard */,
+				35F6488E241A219000D70512 /* DBVoiceResource */,
 				35F648BB241A21A700D70512 /* thirdLib */,
 				35F6487F241A216200D70512 /* Assets.xcassets */,
 				35F64881241A216200D70512 /* LaunchScreen.storyboard */,
@@ -245,16 +245,16 @@
 			files = (
 				35F648AE241A219100D70512 /* 6.png in Resources */,
 				35F648AB241A219100D70512 /* 4.png in Resources */,
-				35F648C8241A21A700D70512 /* DBVoiceExperience.storyboard in Resources */,
-				35F648C9241A21A700D70512 /* Main.storyboard in Resources */,
 				35F648AF241A219100D70512 /* 2.png in Resources */,
 				35F648B0241A219100D70512 /* 3.png in Resources */,
 				35F648AC241A219100D70512 /* 5.png in Resources */,
+				35AF59A325B02BE6005119A5 /* Main.storyboard in Resources */,
 				35F648AA241A219100D70512 /* 8.png in Resources */,
 				35F648AD241A219100D70512 /* 7.png in Resources */,
 				35F64883241A216200D70512 /* LaunchScreen.storyboard in Resources */,
 				35F64880241A216200D70512 /* Assets.xcassets in Resources */,
 				35F648B1241A219100D70512 /* 1.png in Resources */,
+				35AF59A425B02BE6005119A5 /* DBVoiceExperience.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +268,7 @@
 				35F648BA241A219100D70512 /* AppDelegate.m in Sources */,
 				35F648B6241A219100D70512 /* DBRecordCompleteVC.m in Sources */,
 				35F648B5241A219100D70512 /* ViewController.m in Sources */,
+				35843ECC25B0277A003A4857 /* DBRecordTextVC.m in Sources */,
 				35F648B3241A219100D70512 /* CALayer+XibConfiguration.m in Sources */,
 				35F648C7241A21A700D70512 /* UIView+Toast.m in Sources */,
 				35F648B7241A219100D70512 /* DBNoiseDetectionVC.m in Sources */,
@@ -276,7 +277,6 @@
 				35F648B2241A219100D70512 /* DBVoiceListVC.m in Sources */,
 				35F648C5241A21A700D70512 /* MBProgressHUD.m in Sources */,
 				35F648B4241A219100D70512 /* UIViewController+DBBackButtonHandler.m in Sources */,
-				35F648A9241A219100D70512 /* DBRecordTextVC.m in Sources */,
 				35F64886241A216200D70512 /* main.m in Sources */,
 				35D3C4512421E07300121C4F /* DBLoginVC.m in Sources */,
 				35F648B9241A219100D70512 /* DBVoiceExperienceVC.m in Sources */,
@@ -347,7 +347,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -399,7 +399,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

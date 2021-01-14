@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nKx-lZ-lWa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nKx-lZ-lWa">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,14 +20,14 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欢迎体验复刻声音" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXC-NX-kTK">
                                 <rect key="frame" x="20" y="103" width="374" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="a9X-xf-Fy3"/>
+                                    <constraint firstAttribute="height" constant="40" id="Hnh-zW-tev"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aFW-ib-dZb">
-                                <rect key="frame" x="20" y="158" width="374" height="604"/>
+                                <rect key="frame" x="20" y="158" width="374" height="684"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wlg-4z-rJu">
                                     <size key="itemSize" width="121" height="141"/>
@@ -37,25 +37,25 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="left" reuseIdentifier="DBExperienceCellID" id="6Jy-BW-YeZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="121" height="141"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="110" height="141"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" id="ISS-9a-GBm">
-                                            <rect key="frame" x="0.0" y="0.0" width="121" height="141"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="110" height="141"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="200" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="549-a9-Uh0">
-                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="100"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="100"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6S2-2l-KRu">
-                                                            <rect key="frame" x="8" y="6" width="104" height="60"/>
+                                                            <rect key="frame" x="0.0" y="6" width="110" height="60"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="完成复刻" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJo-xH-Yw0">
-                                                            <rect key="frame" x="0.0" y="70" width="120" height="30"/>
+                                                            <rect key="frame" x="0.0" y="70" width="110" height="30"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -75,7 +75,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="xas100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVb-gv-WeL">
-                                                    <rect key="frame" x="8" y="112" width="95" height="21"/>
+                                                    <rect key="frame" x="0.0" y="112" width="110" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -84,7 +84,7 @@
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="121" height="141"/>
+                                        <size key="customSize" width="110" height="141"/>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -95,13 +95,13 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="aFW-ib-dZb" firstAttribute="leading" secondItem="wYu-eg-cSj" secondAttribute="leading" constant="20" id="5vC-4e-azp"/>
-                            <constraint firstItem="cXC-NX-kTK" firstAttribute="top" secondItem="wYu-eg-cSj" secondAttribute="top" constant="15" id="9eB-Fl-Tvc"/>
-                            <constraint firstItem="cXC-NX-kTK" firstAttribute="leading" secondItem="wYu-eg-cSj" secondAttribute="leading" constant="20" id="J33-QC-fya"/>
-                            <constraint firstItem="aFW-ib-dZb" firstAttribute="top" secondItem="cXC-NX-kTK" secondAttribute="bottom" constant="15" id="KKZ-vt-pan"/>
-                            <constraint firstItem="wYu-eg-cSj" firstAttribute="trailing" secondItem="cXC-NX-kTK" secondAttribute="trailing" constant="20" id="QH3-dF-waj"/>
-                            <constraint firstItem="wYu-eg-cSj" firstAttribute="bottom" secondItem="aFW-ib-dZb" secondAttribute="bottom" constant="100" id="f6Q-QH-De9"/>
-                            <constraint firstItem="wYu-eg-cSj" firstAttribute="trailing" secondItem="aFW-ib-dZb" secondAttribute="trailing" constant="20" id="kpP-vW-kFL"/>
+                            <constraint firstItem="cXC-NX-kTK" firstAttribute="top" secondItem="wYu-eg-cSj" secondAttribute="top" constant="15" id="0f5-Ri-DnD"/>
+                            <constraint firstItem="wYu-eg-cSj" firstAttribute="bottom" secondItem="aFW-ib-dZb" secondAttribute="bottom" constant="20" id="O3B-9V-v52"/>
+                            <constraint firstItem="wYu-eg-cSj" firstAttribute="trailing" secondItem="aFW-ib-dZb" secondAttribute="trailing" constant="20" id="QYX-Tf-nt7"/>
+                            <constraint firstItem="aFW-ib-dZb" firstAttribute="leading" secondItem="wYu-eg-cSj" secondAttribute="leading" constant="20" id="S9n-eB-dsj"/>
+                            <constraint firstItem="wYu-eg-cSj" firstAttribute="trailing" secondItem="cXC-NX-kTK" secondAttribute="trailing" constant="20" id="adw-Kt-KyW"/>
+                            <constraint firstItem="aFW-ib-dZb" firstAttribute="top" secondItem="cXC-NX-kTK" secondAttribute="bottom" constant="15" id="ri2-Yr-NRV"/>
+                            <constraint firstItem="cXC-NX-kTK" firstAttribute="leading" secondItem="wYu-eg-cSj" secondAttribute="leading" constant="20" id="uOP-2k-EGd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wYu-eg-cSj"/>
                     </view>
@@ -193,9 +193,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="开始播放"/>
                                 <state key="selected" title="停止播放"/>
-                                <connections>
-                                    <action selector="playAction:" destination="P0o-bU-sQo" eventType="touchUpInside" id="GC1-YU-irq"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -260,6 +257,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="person.icloud" catalog="system" width="64" height="44"/>
+        <image name="person.icloud" catalog="system" width="128" height="88"/>
     </resources>
 </document>
